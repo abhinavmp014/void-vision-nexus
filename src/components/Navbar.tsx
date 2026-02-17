@@ -29,7 +29,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <a href="#" className="font-display text-xl font-bold gradient-text">
-          Void AI
+          Abhinav
         </a>
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
