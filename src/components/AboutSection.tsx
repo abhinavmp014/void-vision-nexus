@@ -78,7 +78,7 @@ const AboutSection = () => {
           className="glass rounded-2xl p-8 sm:p-10 max-w-4xl mx-auto mb-16 glow-border"
         >
           <p className="text-muted-foreground leading-relaxed text-lg mb-4">
-            Hey! I'm <span className="text-foreground font-semibold">Abhinav</span> — a young tech entrepreneur, developer, and the{" "}
+            Hey! I'm <span className="text-foreground font-semibold">Abhinav</span> — a 14-year-old tech entrepreneur (turning 15 in just two months), developer, and the{" "}
             <span className="text-neon-purple font-semibold">CEO & Founder of Void AI</span>. I started my journey by learning web development from scratch, and today I build AI-powered platforms and full-stack web applications.
           </p>
           <p className="text-muted-foreground leading-relaxed text-lg mb-4">

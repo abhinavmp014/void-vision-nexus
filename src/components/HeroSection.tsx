@@ -4,7 +4,8 @@ import { Instagram } from "lucide-react";
 import abhinavPhoto from "@/assets/abhinav-photo.jpeg";
 
 const roles = [
-  "CEO & Founder of Void AI",
+  "14-year-old Tech Founder",
+  "CEO of Void AI",
   "Web Developer",
   "AI Systems Builder",
   "SEO Strategist",
