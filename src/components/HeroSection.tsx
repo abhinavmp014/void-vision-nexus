@@ -4,9 +4,9 @@ import { Instagram } from "lucide-react";
 import abhinavPhoto from "@/assets/abhinav-photo.jpeg";
 
 const roles = [
-  "CEO of Void AI",
-  "AI Developer",
-  "Web Architect",
+  "CEO & Founder of Void AI",
+  "Web Developer",
+  "AI Systems Builder",
   "SEO Strategist",
   "eCommerce Platform Architect",
 ];
@@ -63,13 +63,16 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="text-neon-purple font-mono text-sm mb-4 tracking-widest uppercase"
             >
-              Welcome to Void AI
+              Hi, I'm Abhinav 👋
             </motion.p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
               Building{" "}
               <span className="gradient-text">Intelligent Digital Systems</span>{" "}
               for the Future
             </h1>
+            <p className="text-muted-foreground text-lg sm:text-xl mb-4 max-w-xl">
+              I'm the CEO & Founder of <span className="text-neon-purple font-semibold">Void AI</span> — passionate about creating AI-powered tools, high-performance websites, and scalable digital platforms.
+            </p>
             <div className="h-8 mb-8">
               <span className="text-lg sm:text-xl text-muted-foreground font-mono">
                 {typedText}
