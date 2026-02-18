@@ -94,35 +94,13 @@ const HeroSection = () => {
 
       {/* Grain texture overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none z-20"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-50"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
           backgroundSize: "128px 128px",
         }}
       />
-
-      {/* Floating rotated badges */}
-      {badges.map((badge, i) => (
-        <motion.div
-          key={badge.label}
-          initial={{ opacity: 0, scale: 0.5, rotate: badge.rotate * 2 }}
-          animate={{ opacity: 1, scale: 1, rotate: badge.rotate }}
-          transition={{ delay: 1 + i * 0.15, duration: 0.6, type: "spring" }}
-          className="absolute hidden lg:block z-10"
-          style={{ left: badge.x, top: badge.y, ...parallax(15 + i * 5) }}
-        >
-          <motion.div
-            whileHover={{ rotate: 0, scale: 1.1, y: -4 }}
-            className="px-4 py-2 rounded-full glass text-sm font-medium text-foreground cursor-default select-none"
-            style={{
-              boxShadow: "0 8px 32px hsl(270 80% 60% / 0.15), 0 2px 8px rgba(0,0,0,0.3)",
-            }}
-          >
-            {badge.label}
-          </motion.div>
-        </motion.div>
-      ))}
 
       {/* Floating objects */}
       {floatingObjects.map((obj, i) => (
@@ -272,6 +250,32 @@ const HeroSection = () => {
                   <p className="text-[9px] text-background font-medium text-center mt-1.5 leading-tight">
                     {card.caption}
                   </p>
+                </motion.div>
+              </motion.div>
+            ))}
+            {/* Floating rotated badges clustered around photo */}
+            {badges.map((badge, i) => (
+              <motion.div
+                key={badge.label}
+                initial={{ opacity: 0, scale: 0.5, rotate: badge.rotate * 2 }}
+                animate={{ opacity: 1, scale: 1, rotate: badge.rotate }}
+                transition={{ delay: 1 + i * 0.15, duration: 0.6, type: "spring" }}
+                className="absolute hidden lg:block z-30"
+                style={{
+                  top: i === 0 ? "10%" : i === 1 ? "-5%" : i === 2 ? "auto" : "auto",
+                  bottom: i === 2 ? "15%" : i === 3 ? "5%" : "auto",
+                  left: i === 0 ? "-20%" : i === 3 ? "-15%" : "auto",
+                  right: i === 1 ? "-15%" : i === 2 ? "-20%" : "auto",
+                }}
+              >
+                <motion.div
+                  whileHover={{ rotate: 0, scale: 1.1, y: -4 }}
+                  className="px-4 py-2 rounded-full glass text-sm font-medium text-foreground cursor-default select-none"
+                  style={{
+                    boxShadow: "0 8px 32px hsl(270 80% 60% / 0.15), 0 2px 8px rgba(0,0,0,0.3)",
+                  }}
+                >
+                  {badge.label}
                 </motion.div>
               </motion.div>
             ))}
