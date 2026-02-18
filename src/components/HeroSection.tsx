@@ -81,13 +81,16 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* Role roll */}
-            <div className="mb-8 overflow-hidden h-7">
-              <div className="animate-roll">
-                {[...roles, ...roles].map((role, i) => (
-                  <div key={i} className="h-7 flex items-center justify-center lg:justify-start text-muted-foreground text-sm">
+            {/* Infinite horizontal scroll */}
+            <div className="mb-8 overflow-hidden relative w-full max-w-xl mx-auto lg:mx-0">
+              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-background to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent z-10" />
+              <div className="flex animate-marquee whitespace-nowrap will-change-transform">
+                {[...roles, ...roles, ...roles, ...roles].map((role, i) => (
+                  <span key={i} className="inline-flex items-center text-sm text-muted-foreground mx-4 shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neon-purple mr-3 shrink-0" />
                     {role}
-                  </div>
+                  </span>
                 ))}
               </div>
             </div>
