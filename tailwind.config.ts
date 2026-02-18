@@ -84,9 +84,9 @@ export default {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "1" },
         },
-        "roll": {
-          "0%": { transform: "translateY(0%)" },
-          "100%": { transform: "translateY(-50%)" },
+        "marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
         "particle-float": {
           "0%, 100%": { transform: "translate(0, 0)", opacity: "0.3" },
@@ -105,7 +105,7 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "float": "float 3s ease-in-out infinite",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
-        "roll": "roll 6s linear infinite",
+        "marquee": "marquee 20s linear infinite",
         "particle-float": "particle-float 8s ease-in-out infinite",
         "skill-fill": "skill-fill 1.5s ease-out forwards",
       },
