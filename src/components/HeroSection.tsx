@@ -12,13 +12,6 @@ const roles = [
   "eCommerce Platform Architect",
 ];
 
-const badges = [
-  { label: "Creative 🎨", rotate: -8, x: "5%", y: "15%" },
-  { label: "Team Player 🤝", rotate: 6, x: "68%", y: "8%" },
-  { label: "Problem Solver 🧠", rotate: -4, x: "75%", y: "65%" },
-  { label: "Fast Learner ⚡", rotate: 10, x: "2%", y: "70%" },
-];
-
 const polaroids = [
   { caption: "Building AI Tools", rotate: -6, offsetX: -60, offsetY: 20, z: 3 },
   { caption: "Designing Systems", rotate: 4, offsetX: 0, offsetY: -10, z: 4 },
@@ -27,9 +20,11 @@ const polaroids = [
 ];
 
 const floatingObjects = [
-  { emoji: "📄", size: 48, x: "12%", y: "30%", delay: 0, duration: 4 },
-  { emoji: "⭐", size: 36, x: "85%", y: "40%", delay: 1.2, duration: 5 },
-  { emoji: "🚀", size: 42, x: "78%", y: "22%", delay: 0.6, duration: 3.5 },
+  { emoji: "✦", size: 20, x: "8%", y: "25%", delay: 0, duration: 5 },
+  { emoji: "✦", size: 14, x: "88%", y: "35%", delay: 1.2, duration: 6 },
+  { emoji: "✦", size: 16, x: "75%", y: "18%", delay: 0.6, duration: 4.5 },
+  { emoji: "✦", size: 12, x: "15%", y: "65%", delay: 0.9, duration: 5.5 },
+  { emoji: "✦", size: 18, x: "92%", y: "60%", delay: 1.5, duration: 4 },
 ];
 
 const HeroSection = () => {
@@ -102,24 +97,21 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Floating objects */}
+      {/* Floating sparkle particles */}
       {floatingObjects.map((obj, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 0.7, y: 0 }}
-          transition={{ delay: 1.5 + obj.delay, duration: 0.8 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 0.5, scale: 1 }}
+          transition={{ delay: 1.5 + obj.delay, duration: 1 }}
           className="absolute hidden lg:block pointer-events-none z-[5]"
           style={{ left: obj.x, top: obj.y, ...parallax(10 + i * 8) }}
         >
           <motion.span
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -8, 0], opacity: [0.3, 0.7, 0.3] }}
             transition={{ duration: obj.duration, repeat: Infinity, ease: "easeInOut" }}
-            className="block select-none"
-            style={{
-              fontSize: obj.size,
-              filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.4))",
-            }}
+            className="block select-none text-neon-purple/60"
+            style={{ fontSize: obj.size }}
           >
             {obj.emoji}
           </motion.span>
@@ -250,32 +242,6 @@ const HeroSection = () => {
                   <p className="text-[9px] text-background font-medium text-center mt-1.5 leading-tight">
                     {card.caption}
                   </p>
-                </motion.div>
-              </motion.div>
-            ))}
-            {/* Floating rotated badges clustered around photo */}
-            {badges.map((badge, i) => (
-              <motion.div
-                key={badge.label}
-                initial={{ opacity: 0, scale: 0.5, rotate: badge.rotate * 2 }}
-                animate={{ opacity: 1, scale: 1, rotate: badge.rotate }}
-                transition={{ delay: 1 + i * 0.15, duration: 0.6, type: "spring" }}
-                className="absolute hidden lg:block z-30"
-                style={{
-                  top: i === 0 ? "10%" : i === 1 ? "-5%" : i === 2 ? "auto" : "auto",
-                  bottom: i === 2 ? "15%" : i === 3 ? "5%" : "auto",
-                  left: i === 0 ? "-20%" : i === 3 ? "-15%" : "auto",
-                  right: i === 1 ? "-15%" : i === 2 ? "-20%" : "auto",
-                }}
-              >
-                <motion.div
-                  whileHover={{ rotate: 0, scale: 1.1, y: -4 }}
-                  className="px-4 py-2 rounded-full glass text-sm font-medium text-foreground cursor-default select-none"
-                  style={{
-                    boxShadow: "0 8px 32px hsl(270 80% 60% / 0.15), 0 2px 8px rgba(0,0,0,0.3)",
-                  }}
-                >
-                  {badge.label}
                 </motion.div>
               </motion.div>
             ))}
