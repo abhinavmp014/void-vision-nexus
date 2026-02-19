@@ -19,14 +19,6 @@ const polaroids = [
   { caption: "Exploring Tech", rotate: 7, offsetX: 120, offsetY: 5, z: 1 },
 ];
 
-const floatingObjects = [
-  { emoji: "✦", size: 20, x: "8%", y: "25%", delay: 0, duration: 5 },
-  { emoji: "✦", size: 14, x: "88%", y: "35%", delay: 1.2, duration: 6 },
-  { emoji: "✦", size: 16, x: "75%", y: "18%", delay: 0.6, duration: 4.5 },
-  { emoji: "✦", size: 12, x: "15%", y: "65%", delay: 0.9, duration: 5.5 },
-  { emoji: "✦", size: 18, x: "92%", y: "60%", delay: 1.5, duration: 4 },
-];
-
 const HeroSection = () => {
   const [typedText, setTypedText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
@@ -97,26 +89,6 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Floating sparkle particles */}
-      {floatingObjects.map((obj, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.5, scale: 1 }}
-          transition={{ delay: 1.5 + obj.delay, duration: 1 }}
-          className="absolute hidden lg:block pointer-events-none z-[5]"
-          style={{ left: obj.x, top: obj.y, ...parallax(10 + i * 8) }}
-        >
-          <motion.span
-            animate={{ y: [0, -8, 0], opacity: [0.3, 0.7, 0.3] }}
-            transition={{ duration: obj.duration, repeat: Infinity, ease: "easeInOut" }}
-            className="block select-none text-neon-purple/60"
-            style={{ fontSize: obj.size }}
-          >
-            {obj.emoji}
-          </motion.span>
-        </motion.div>
-      ))}
 
       {/* Main content */}
       <div className="container mx-auto px-6 relative z-10">
