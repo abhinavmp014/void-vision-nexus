@@ -165,9 +165,10 @@ const ToolsSection = () => {
                     }}
                   >
                     <div
-                      className="text-muted-foreground/50 transition-all duration-300 group-hover:text-foreground group-hover:drop-shadow-[0_0_12px_var(--glow)]"
+                      className="transition-all duration-300 group-hover:drop-shadow-[0_0_12px_var(--glow)]"
                       style={
                         {
+                          color: tool.color,
                           "--glow": `${tool.color}80`,
                         } as React.CSSProperties
                       }
