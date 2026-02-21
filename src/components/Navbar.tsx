@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, LogOut } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
+import type { User } from "@supabase/supabase-js";
 
 const links = [
 { label: "About", href: "#about" },
@@ -13,12 +16,33 @@ const links = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleGoogleSignIn = async () => {
+    await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
+    });
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
 
   return (
     <motion.nav
@@ -37,10 +61,26 @@ const Navbar = () => {
             key={l.href}
             href={l.href}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group">
-
               {l.label}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-neon-purple to-neon-blue group-hover:w-full transition-all duration-300" />
             </a>
+          )}
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-colors"
+            >
+              <LogOut size={16} />
+              Sign Out
+            </button>
+          ) : (
+            <button
+              onClick={handleGoogleSignIn}
+              className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground transition-colors"
+            >
+              <LogIn size={16} />
+              Sign in with Google
+            </button>
           )}
         </div>
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
@@ -62,10 +102,18 @@ const Navbar = () => {
               href={l.href}
               onClick={() => setOpen(false)}
               className="text-muted-foreground hover:text-foreground transition-colors">
-
                   {l.label}
                 </a>
             )}
+              {user ? (
+                <button onClick={handleSignOut} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <LogOut size={16} /> Sign Out
+                </button>
+              ) : (
+                <button onClick={handleGoogleSignIn} className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-primary text-primary-foreground">
+                  <LogIn size={16} /> Sign in with Google
+                </button>
+              )}
             </div>
           </motion.div>
         }
