@@ -98,6 +98,10 @@ export default {
           "0%": { width: "0%" },
           "100%": { width: "var(--skill-level)" },
         },
+        spotlight: {
+          "0%": { opacity: "0", transform: "translate(-72%, -62%) scale(0.5)" },
+          "100%": { opacity: "1", transform: "translate(-50%,-40%) scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -108,6 +112,7 @@ export default {
         "marquee": "marquee 20s linear infinite",
         "particle-float": "particle-float 8s ease-in-out infinite",
         "skill-fill": "skill-fill 1.5s ease-out forwards",
+        spotlight: "spotlight 2s ease .75s 1 forwards",
       },
     },
   },
