@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export const FloatingNav = ({
   navItems,
   className,
+  brandName,
 }: {
   navItems: {
     name: string;
@@ -18,6 +19,7 @@ export const FloatingNav = ({
     icon?: React.ReactNode;
   }[];
   className?: string;
+  brandName?: string;
 }) => {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(false);

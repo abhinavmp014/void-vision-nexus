@@ -12,7 +12,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
-  return <FloatingNav navItems={navItems} />;
+  return <FloatingNav navItems={navItems} brandName="Abhinav.mp" />;
 };
 
 export default Navbar;
