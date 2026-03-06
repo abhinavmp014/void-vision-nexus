@@ -4,20 +4,20 @@ import { Instagram } from "lucide-react";
 import abhinavPhoto from "@/assets/abhinav-photo.jpeg";
 
 const roles = [
-  "14-year-old Tech Founder",
-  "CEO of Void AI",
-  "Web Developer",
-  "AI Systems Builder",
-  "SEO Strategist",
-  "eCommerce Platform Architect",
-];
+"14-year-old Tech Founder",
+"CEO of Void AI",
+"Web Developer",
+"AI Systems Builder",
+"SEO Strategist",
+"eCommerce Platform Architect"];
+
 
 const polaroids = [
-  { caption: "Building AI Tools", rotate: -6, offsetX: -60, offsetY: 20, z: 3 },
-  { caption: "Designing Systems", rotate: 4, offsetX: 0, offsetY: -10, z: 4 },
-  { caption: "Crafting Websites", rotate: -3, offsetX: 60, offsetY: 30, z: 2 },
-  { caption: "Exploring Tech", rotate: 7, offsetX: 120, offsetY: 5, z: 1 },
-];
+{ caption: "Building AI Tools", rotate: -6, offsetX: -60, offsetY: 20, z: 3 },
+{ caption: "Designing Systems", rotate: 4, offsetX: 0, offsetY: -10, z: 4 },
+{ caption: "Crafting Websites", rotate: -3, offsetX: 60, offsetY: 30, z: 2 },
+{ caption: "Exploring Tech", rotate: 7, offsetX: 120, offsetY: 5, z: 1 }];
+
 
 const HeroSection = () => {
   const [typedText, setTypedText] = useState("");
@@ -64,15 +64,15 @@ const HeroSection = () => {
 
   const parallax = (strength: number) => ({
     transform: `translate(${mouse.x * strength}px, ${mouse.y * strength}px)`,
-    transition: "transform 0.3s ease-out",
+    transition: "transform 0.3s ease-out"
   });
 
   return (
     <section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-    >
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      
       {/* Soft gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-[hsl(270_40%_12%)]" />
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[160px]" />
@@ -85,9 +85,9 @@ const HeroSection = () => {
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
-          backgroundSize: "128px 128px",
-        }}
-      />
+          backgroundSize: "128px 128px"
+        }} />
+      
 
 
       {/* Main content */}
@@ -99,8 +99,8 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-neon-purple font-mono text-sm mb-5 tracking-[0.25em] uppercase"
-            >
+              className="text-neon-purple font-mono text-sm mb-5 tracking-[0.25em] uppercase">
+              
               Hi, I'm Abhinav 👋
             </motion.p>
 
@@ -108,8 +108,8 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.7 }}
-              className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] mb-6 tracking-tight uppercase"
-            >
+              className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] mb-6 tracking-tight uppercase">
+              
               Building{" "}
               <span className="gradient-text">Intelligent</span>
               <br />
@@ -121,8 +121,8 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-muted-foreground text-lg sm:text-xl mb-4 max-w-xl leading-relaxed"
-            >
+              className="text-muted-foreground text-lg sm:text-xl mb-4 max-w-xl leading-relaxed">
+              
               CEO & Founder of{" "}
               <span className="text-neon-purple font-semibold">Void AI</span> —
               crafting AI-powered tools, high-performance websites, and scalable
@@ -134,8 +134,8 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="h-8 mb-8"
-            >
+              className="h-8 mb-8">
+              
               <span className="text-lg sm:text-xl text-muted-foreground font-mono">
                 {typedText}
                 <span className="animate-glow-pulse text-neon-purple">|</span>
@@ -152,8 +152,8 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full instagram-gradient text-primary-foreground font-semibold text-lg instagram-glow hover:shadow-[0_0_40px_rgba(225,48,108,0.5)] transition-shadow duration-300"
-            >
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full instagram-gradient text-primary-foreground font-semibold text-lg instagram-glow hover:shadow-[0_0_40px_rgba(225,48,108,0.5)] transition-shadow duration-300">
+              
               <Instagram size={22} />
               Message Me on Instagram
             </motion.a>
@@ -165,8 +165,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             className="relative"
-            style={parallax(8)}
-          >
+            style={parallax(8)}>
+            
             {/* Main photo */}
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 z-10">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-purple to-neon-blue p-[3px] animate-float">
@@ -174,49 +174,49 @@ const HeroSection = () => {
                   <img
                     src={abhinavPhoto}
                     alt="Abhinav - CEO of Void AI"
-                    className="w-full h-full object-cover"
-                  />
+                    className="w-full h-full object-cover" />
+                  
                 </div>
               </div>
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-purple/20 to-neon-blue/20 blur-2xl -z-10" />
             </div>
 
             {/* Polaroid cards */}
-            {polaroids.map((card, i) => (
-              <motion.div
-                key={card.caption}
-                initial={{ opacity: 0, y: 40, rotate: card.rotate * 2 }}
-                animate={{ opacity: 1, y: 0, rotate: card.rotate }}
-                transition={{ delay: 1.2 + i * 0.12, duration: 0.6, type: "spring" }}
-                className="absolute hidden lg:block"
-                style={{
-                  bottom: -40 + card.offsetY,
-                  left: `calc(50% + ${card.offsetX - 40}px)`,
-                  zIndex: card.z,
-                }}
-              >
-                <motion.div
-                  whileHover={{ rotate: 0, y: -8, scale: 1.05 }}
-                  animate={{ x: [0, i % 2 === 0 ? 6 : -6, 0] }}
-                  transition={{
-                    x: { duration: 4 + i, repeat: Infinity, ease: "easeInOut" },
-                  }}
-                  className="w-24 bg-foreground/90 rounded-sm p-1.5 cursor-default"
-                  style={{
-                    boxShadow: "0 8px 30px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3)",
-                  }}
-                >
-                  <div className="w-full h-20 rounded-[2px] bg-gradient-to-br from-muted to-card overflow-hidden">
-                    <div className="w-full h-full flex items-center justify-center text-2xl">
-                      {["🤖", "⚙️", "🌐", "💡"][i]}
-                    </div>
-                  </div>
-                  <p className="text-[9px] text-background font-medium text-center mt-1.5 leading-tight">
-                    {card.caption}
-                  </p>
-                </motion.div>
+            {polaroids.map((card, i) =>
+            <motion.div
+              key={card.caption}
+              initial={{ opacity: 0, y: 40, rotate: card.rotate * 2 }}
+              animate={{ opacity: 1, y: 0, rotate: card.rotate }}
+              transition={{ delay: 1.2 + i * 0.12, duration: 0.6, type: "spring" }}
+              className="absolute hidden lg:block"
+              style={{
+                bottom: -40 + card.offsetY,
+                left: `calc(50% + ${card.offsetX - 40}px)`,
+                zIndex: card.z
+              }}>
+              
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </div>
@@ -225,20 +225,20 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 z-10 py-5 border-t border-border/30 bg-background/40 backdrop-blur-sm">
         <div className="relative overflow-hidden">
           <div className="flex animate-marquee whitespace-nowrap will-change-transform">
-            {[...roles, ...roles, ...roles, ...roles].map((role, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center text-base sm:text-lg text-muted-foreground mx-8 shrink-0 font-medium uppercase tracking-wider"
-              >
+            {[...roles, ...roles, ...roles, ...roles].map((role, i) =>
+            <span
+              key={i}
+              className="inline-flex items-center text-base sm:text-lg text-muted-foreground mx-8 shrink-0 font-medium uppercase tracking-wider">
+              
                 <span className="w-2 h-2 rounded-full bg-neon-purple mr-4 shrink-0" />
                 {role}
               </span>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
