@@ -1,18 +1,16 @@
-import { FloatingNav } from "@/components/ui/floating-navbar";
-import { Home, User, Code, Lightbulb, Eye, Mail, Wrench } from "lucide-react";
+import { MiniNavbar } from "@/components/ui/mini-navbar";
 
-const navItems = [
-  { name: "Home", link: "#", icon: <Home size={16} /> },
-  { name: "About", link: "#about", icon: <User size={16} /> },
-  { name: "Skills", link: "#skills", icon: <Code size={16} /> },
-  { name: "Projects", link: "#projects", icon: <Wrench size={16} /> },
-  { name: "My I Made", link: "#my-i-made", icon: <Lightbulb size={16} /> },
-  { name: "Vision", link: "#vision", icon: <Eye size={16} /> },
-  { name: "Contact", link: "#contact", icon: <Mail size={16} /> },
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "My I Made", href: "#my-i-made" },
+  { label: "Vision", href: "#vision" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
-  return <FloatingNav navItems={navItems} brandName="Abhinav.mp" />;
+  return <MiniNavbar brandName="Abhinav.mp" navLinks={navLinks} />;
 };
 
 export default Navbar;
