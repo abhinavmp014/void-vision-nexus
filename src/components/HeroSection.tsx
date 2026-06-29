@@ -1,244 +1,98 @@
-import { useEffect, useState, useRef, useCallback } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { Instagram } from "lucide-react";
+import { motion } from "framer-motion";
 import abhinavPhoto from "@/assets/abhinav-photo.jpeg";
 
-const roles = [
-"14-year-old Tech Founder",
-"CEO of Void AI",
-"Web Developer",
-"AI Systems Builder",
-"SEO Strategist",
-"eCommerce Platform Architect"];
-
-
-const polaroids = [
-{ caption: "Building AI Tools", rotate: -6, offsetX: -60, offsetY: 20, z: 3 },
-{ caption: "Designing Systems", rotate: 4, offsetX: 0, offsetY: -10, z: 4 },
-{ caption: "Crafting Websites", rotate: -3, offsetX: 60, offsetY: 30, z: 2 },
-{ caption: "Exploring Tech", rotate: 7, offsetX: 120, offsetY: 5, z: 1 }];
-
+const word = {
+  hidden: { y: "110%" },
+  show: (i: number) => ({
+    y: "0%",
+    transition: { delay: 0.1 + i * 0.08, duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
 const HeroSection = () => {
-  const [typedText, setTypedText] = useState("");
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const sectionRef = useRef<HTMLElement>(null);
-
-  // Typing effect
-  useEffect(() => {
-    const current = roles[roleIndex];
-    const timeout = setTimeout(
-      () => {
-        if (!deleting) {
-          setTypedText(current.slice(0, charIndex + 1));
-          setCharIndex((c) => c + 1);
-          if (charIndex + 1 === current.length) {
-            setTimeout(() => setDeleting(true), 1500);
-          }
-        } else {
-          setTypedText(current.slice(0, charIndex - 1));
-          setCharIndex((c) => c - 1);
-          if (charIndex <= 1) {
-            setDeleting(false);
-            setRoleIndex((r) => (r + 1) % roles.length);
-            setCharIndex(0);
-          }
-        }
-      },
-      deleting ? 40 : 80
-    );
-    return () => clearTimeout(timeout);
-  }, [charIndex, deleting, roleIndex]);
-
-  // Mouse parallax
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMouse({ x, y });
-  }, []);
-
-  const parallax = (strength: number) => ({
-    transform: `translate(${mouse.x * strength}px, ${mouse.y * strength}px)`,
-    transition: "transform 0.3s ease-out"
-  });
+  const lines = [["AI", "SYSTEMS"], ["BUILDER"]];
 
   return (
-    <section
-      ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      
-      {/* Soft gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-[hsl(270_40%_12%)]" />
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[160px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-neon-blue/8 rounded-full blur-[140px]" />
-      <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-neon-pink/6 rounded-full blur-[120px]" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
+      {/* Decorative star */}
+      <motion.div
+        initial={{ opacity: 0, rotate: -180, scale: 0 }}
+        animate={{ opacity: 1, rotate: 0, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-[8%] top-[38%] hidden md:block"
+      >
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <path
+            d="M32 0 L36 28 L64 32 L36 36 L32 64 L28 36 L0 32 L28 28 Z"
+            fill="hsl(var(--foreground))"
+          />
+        </svg>
+      </motion.div>
 
-      {/* Grain texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none z-50"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "128px 128px"
-        }} />
-      
+      {/* Decorative bolt */}
+      <motion.div
+        initial={{ opacity: 0, rotate: 45, scale: 0 }}
+        animate={{ opacity: 1, rotate: 12, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute right-[10%] top-[55%] hidden md:block"
+      >
+        <svg width="56" height="72" viewBox="0 0 56 72" fill="none">
+          <path
+            d="M34 0 L0 40 L22 40 L20 72 L56 28 L32 28 Z"
+            fill="hsl(var(--foreground))"
+          />
+        </svg>
+      </motion.div>
 
-
-      {/* Main content */}
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Text side */}
-          <div className="flex-1 text-center lg:text-left" style={parallax(5)}>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-neon-purple font-mono text-sm mb-5 tracking-[0.25em] uppercase">
-              
-              Hi, I'm Abhinav 👋
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.7 }}
-              className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] mb-6 tracking-tight uppercase">
-              
-              Building{" "}
-              <span className="gradient-text">Intelligent</span>
-              <br />
-              <span className="gradient-text">Digital</span>{" "}
-              Systems
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-muted-foreground text-lg sm:text-xl mb-4 max-w-xl leading-relaxed">
-              
-              CEO & Founder of{" "}
-              <span className="text-neon-purple font-semibold">Void AI</span> —
-              crafting AI-powered tools, high-performance websites, and scalable
-              digital platforms.
-            </motion.p>
-
-            {/* Typing effect */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="h-8 mb-8">
-              
-              <span className="text-lg sm:text-xl text-muted-foreground font-mono">
-                {typedText}
-                <span className="animate-glow-pulse text-neon-purple">|</span>
-              </span>
-            </motion.div>
-
-            {/* CTA */}
-            <motion.a
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              href="https://www.instagram.com/_abhinavzzz_/?__pwa=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full instagram-gradient text-primary-foreground font-semibold text-lg instagram-glow hover:shadow-[0_0_40px_rgba(225,48,108,0.5)] transition-shadow duration-300">
-              
-              <Instagram size={22} />
-              Message Me on Instagram
-            </motion.a>
-          </div>
-
-          {/* Photo + Polaroid side */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative"
-            style={parallax(8)}>
-            
-            {/* Main photo */}
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 z-10">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-purple to-neon-blue p-[3px] animate-float">
-                <div className="w-full h-full rounded-full overflow-hidden bg-background">
-                  <img
-                    src={abhinavPhoto}
-                    alt="Abhinav - CEO of Void AI"
-                    className="w-full h-full object-cover" />
-                  
-                </div>
+      {/* Main headline */}
+      <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+        {lines.map((line, li) => (
+          <div key={li} className="flex gap-3 sm:gap-6 overflow-hidden">
+            {line.map((w, wi) => (
+              <div key={wi} className="overflow-hidden">
+                <motion.h1
+                  custom={li * 2 + wi}
+                  variants={word}
+                  initial="hidden"
+                  animate="show"
+                  className="font-display font-black text-[16vw] sm:text-[14vw] lg:text-[11rem] leading-[0.95] tracking-tighter text-foreground"
+                >
+                  {w}
+                </motion.h1>
               </div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-purple/20 to-neon-blue/20 blur-2xl -z-10" />
-            </div>
-
-            {/* Polaroid cards */}
-            {polaroids.map((card, i) =>
-            <motion.div
-              key={card.caption}
-              initial={{ opacity: 0, y: 40, rotate: card.rotate * 2 }}
-              animate={{ opacity: 1, y: 0, rotate: card.rotate }}
-              transition={{ delay: 1.2 + i * 0.12, duration: 0.6, type: "spring" }}
-              className="absolute hidden lg:block"
-              style={{
-                bottom: -40 + card.offsetY,
-                left: `calc(50% + ${card.offsetX - 40}px)`,
-                zIndex: card.z
-              }}>
-              
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              
-              </motion.div>
-            )}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Infinite marquee at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 py-5 border-t border-border/30 bg-background/40 backdrop-blur-sm">
-        <div className="relative overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap will-change-transform">
-            {[...roles, ...roles, ...roles, ...roles].map((role, i) =>
-            <span
-              key={i}
-              className="inline-flex items-center text-base sm:text-lg text-muted-foreground mx-8 shrink-0 font-medium uppercase tracking-wider">
-              
-                <span className="w-2 h-2 rounded-full bg-neon-purple mr-4 shrink-0" />
-                {role}
-              </span>
-            )}
+            ))}
           </div>
-        </div>
+        ))}
       </div>
-    </section>);
 
+      {/* Photo */}
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-12 sm:mt-16"
+      >
+        <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-xl ring-1 ring-foreground/10">
+          <img
+            src={abhinavPhoto}
+            alt="Abhinav — CEO of Void AI"
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+          />
+        </div>
+      </motion.div>
+
+      {/* Footer line */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="absolute bottom-8 left-0 right-0 flex justify-between items-end px-6 sm:px-10 text-xs sm:text-sm font-mono text-foreground"
+      >
+        <span className="font-display font-black text-xl">©{new Date().getFullYear()}</span>
+        <span className="tracking-wider">/CREATING SINCE 2023</span>
+      </motion.div>
+    </section>
+  );
 };
 
 export default HeroSection;
