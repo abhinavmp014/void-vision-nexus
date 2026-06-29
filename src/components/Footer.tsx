@@ -1,9 +1,8 @@
 const Footer = () => (
-  <footer className="py-8 border-t border-border/50">
-    <div className="container mx-auto px-6 text-center">
-      <p className="text-muted-foreground text-sm">
-        © {new Date().getFullYear()} <span className="gradient-text font-semibold">Abhinav</span>. All rights reserved.
-      </p>
+  <footer className="px-6 py-10 border-t border-border">
+    <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
+      <span>© {new Date().getFullYear()} ABHINAV.MP</span>
+      <span>BUILT WITH CARE / VOID AI</span>
     </div>
   </footer>
 );
