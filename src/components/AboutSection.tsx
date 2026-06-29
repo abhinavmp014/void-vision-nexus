@@ -1,5 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import ScrollHighlightText from "./ScrollHighlightText";
+
 
 const stats = [
   { label: "AI Tools Built", value: 3 },
@@ -52,25 +54,14 @@ const AboutSection = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 mb-20">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground leading-relaxed"
-          >
+          <ScrollHighlightText className="text-lg text-foreground leading-relaxed">
             CEO & Founder of Void AI. I build AI-powered tools — chatbots, flashcard generators, study platforms — and ship full-stack web and eCommerce systems with strong SEO foundations.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
-          >
+          </ScrollHighlightText>
+          <ScrollHighlightText className="text-lg text-foreground leading-relaxed">
             Turning 15 in two months, still learning, still shipping. My focus: building technology that helps people learn, shop, and connect smarter.
-          </motion.p>
+          </ScrollHighlightText>
         </div>
+
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-border pt-12">
           {stats.map((s, i) => (

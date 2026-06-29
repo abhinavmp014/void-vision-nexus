@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
 import abhinavPhoto from "@/assets/abhinav-photo.jpeg";
 
 const word = {
@@ -10,10 +11,17 @@ const word = {
 };
 
 const HeroSection = () => {
-  const lines = [["AI", "SYSTEMS"], ["BUILDER"]];
+  const lines = [["SOFTWARE"], ["ENGINEER"]];
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { scrollY } = useScroll();
+  const smoothY = useSpring(scrollY, { stiffness: 80, damping: 20, mass: 0.5 });
+  const photoY = useTransform(smoothY, [0, 1200], [0, 500]);
+  const photoRotate = useTransform(smoothY, [0, 1200], [0, 35]);
+  const photoScale = useTransform(smoothY, [0, 1200], [1, 1.08]);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
+    <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
       {/* Decorative star */}
       <motion.div
         initial={{ opacity: 0, rotate: -180, scale: 0 }}
@@ -22,10 +30,7 @@ const HeroSection = () => {
         className="absolute left-[8%] top-[38%] hidden md:block"
       >
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-          <path
-            d="M32 0 L36 28 L64 32 L36 36 L32 64 L28 36 L0 32 L28 28 Z"
-            fill="hsl(var(--foreground))"
-          />
+          <path d="M32 0 L36 28 L64 32 L36 36 L32 64 L28 36 L0 32 L28 28 Z" fill="hsl(var(--foreground))" />
         </svg>
       </motion.div>
 
@@ -37,10 +42,7 @@ const HeroSection = () => {
         className="absolute right-[10%] top-[55%] hidden md:block"
       >
         <svg width="56" height="72" viewBox="0 0 56 72" fill="none">
-          <path
-            d="M34 0 L0 40 L22 40 L20 72 L56 28 L32 28 Z"
-            fill="hsl(var(--foreground))"
-          />
+          <path d="M34 0 L0 40 L22 40 L20 72 L56 28 L32 28 Z" fill="hsl(var(--foreground))" />
         </svg>
       </motion.div>
 
@@ -55,7 +57,7 @@ const HeroSection = () => {
                   variants={word}
                   initial="hidden"
                   animate="show"
-                  className="font-display font-black text-[16vw] sm:text-[14vw] lg:text-[11rem] leading-[0.95] tracking-tighter text-foreground"
+                  className="font-display font-black text-[18vw] sm:text-[15vw] lg:text-[12rem] leading-[0.95] tracking-tighter text-foreground"
                 >
                   {w}
                 </motion.h1>
@@ -65,20 +67,23 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Photo */}
+      {/* Scroll-driven photo */}
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-12 sm:mt-16"
+        className="mt-12 sm:mt-16 relative z-20"
       >
-        <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-xl ring-1 ring-foreground/10">
+        <motion.div
+          style={{ y: photoY, rotate: photoRotate, scale: photoScale }}
+          className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-foreground/10 will-change-transform"
+        >
           <img
             src={abhinavPhoto}
             alt="Abhinav — CEO of Void AI"
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Footer line */}
