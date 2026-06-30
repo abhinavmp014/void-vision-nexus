@@ -1,60 +1,44 @@
-## Changes
 
-### 1. Hero headline
-Change the giant headline from `AI SYSTEMS / BUILDER` to:
+# Rebuild portfolio in the Majd layout
 
-```
-SOFTWARE
-ENGINEER
-```
+Mirror the reference's structure, rhythm, and motion using your existing content (Abhinav, 14, Founder/CEO Void AI). Keep the cream/black palette already in place; redesign sections to match the reference's flow.
 
-Keep the staggered word-reveal entrance animation.
+## Page flow (top → bottom)
 
-### 2. Scroll-driven photo (rotates + drifts down)
-Currently the small square photo sits statically below the headline. Replace with a photo that reacts to page scroll:
+1. **Centered pill navbar** — black pill, "Abhinav" on the left, "•••" menu button on the right that opens a dropdown with Home / About / Works / Contact / Instagram. Stays centered, sticky at top.
+2. **Hero** — cream bg. Giant stacked headline "SOFTWARE / ENGINEER". Decorative chrome star (left) and lightning bolt (right). Profile photo as a small rounded card that sits behind the headline and scroll-rotates / drifts down (already implemented — keep, tune sizing). Bottom row: "©2026" (left) and "/CREATING SINCE 2023" (right).
+3. **Intro statement** — full-width cream section. One large centered paragraph using the existing ScrollHighlightText (word-by-word brighten on scroll). Replaces current About copy block.
+4. **Services / What I Do** — "/Services" eyebrow + heading "What I Do". 3–4 large stacked rows separated by hairlines (AI Systems, Full-Stack Web, eCommerce + SEO, Product Consulting). Each row: number, title, one-line description, arrow. Hover slides the row content right.
+5. **Featured Projects** — "/Works" eyebrow + "Featured Projects" heading with a "View All Work" link top-right. 2-column grid: each card is a large image/preview block with rounded corners, project name below in large display type and a small subtitle (Void AI Chatbot — AI Assistant, Study AI — Learning Platform, etc.). Subtle hover lift.
+6. **Testimonials** — "/Testimonials" eyebrow + big blurred-in heading. 3–4 dark rounded quote cards in a row with name + role.
+7. **Let's talk CTA** — large left-aligned "Let's talk." headline, supporting line "Have a project or need help?", Instagram button.
+8. **Dark footer** — switches to near-black bg with cream text. Two columns of links (`/Quick links`: Home, About Me, Services, Works, Contact; `/Contact`: instagram handle / email line) next to a left "Scaling / Start-ups / for Growth." style statement rewritten for Abhinav ("Building / Intelligent / Systems."). Huge faded "ABHINAV" wordmark across the bottom. Small legal row underneath.
 
-- Uses `useScroll` + `useTransform` from framer-motion.
-- As the user scrolls down the page, the photo:
-  - translates downward (`y: 0 → ~400px`)
-  - rotates continuously (`rotate: 0 → 25deg`)
-  - scales slightly (`1 → 1.05`)
-- Spring-smoothed via `useSpring` so motion feels buttery, not jittery (matches the "very smooth" feel of the reference).
-- Photo stays inside the hero section's flow but its visual transform makes it appear to follow the user as they scroll into the About section.
+## Motion & feel
+- Keep Lenis smooth scroll.
+- Reuse `ScrollHighlightText` for intro + footer statement.
+- Sections fade/translate-up on enter via framer-motion (already standard).
+- Hero photo: keep scroll-driven rotate/translate/scale.
+- Headings use word-mask reveal on first paint.
+- Testimonial heading and footer wordmark get a blur-in (filter: blur(20px) → 0).
 
-### 3. Smooth global scrolling (Lenis-style feel)
-Add Lenis smooth-scroll so the whole page scrolls with momentum/easing instead of the browser's default jumpy scroll. This is what makes the reference site feel "very smooth."
+## Files to change
 
-- Install `lenis` (or `@studio-freight/lenis`).
-- Initialize once in `src/pages/Index.tsx` inside a `useEffect`, with `requestAnimationFrame` loop.
-- Clean up on unmount.
+- `src/components/Navbar.tsx` — rebuild as pill with brand + "•••" dropdown menu (Radix DropdownMenu already available).
+- `src/components/HeroSection.tsx` — keep current structure; tighten spacing so the photo overlaps the headline like the reference.
+- `src/components/AboutSection.tsx` — replace with the centered intro statement (single big paragraph via ScrollHighlightText). Move stats out (or drop).
+- `src/components/SkillsSection.tsx` — repurpose into the Services row-list section, or replace with a new `ServicesSection.tsx` and remove from `Index.tsx`.
+- `src/components/ProjectsSection.tsx` — rebuild as 2-column image-led grid with title + subtitle and a top-right "View All Work" link.
+- `src/components/VisionSection.tsx` — remove or fold its line into the intro statement.
+- New `src/components/TestimonialsSection.tsx` — dark quote cards row with blurred-in heading.
+- `src/components/ContactSection.tsx` — left-aligned "Let's talk." with supporting copy and Instagram CTA.
+- `src/components/Footer.tsx` — full dark footer: statement block + quick links + contact + giant ABHINAV wordmark.
+- `src/pages/Index.tsx` — new section order: Navbar, Hero, Intro, Services, Projects, Testimonials, Contact, Footer. Remove ToolsSection (or keep as a thin marquee strip between Services and Projects — your call after seeing it; default is remove for closer match).
 
-### 4. Scroll text highlight (word-by-word reveal)
-Build a reusable `ScrollHighlightText` component used in the About and Vision sections. As the user scrolls through the paragraph:
-
-- Each word starts dimmed (low opacity / muted color).
-- Words light up one-by-one to full foreground color as they cross the viewport center.
-- Implemented with framer-motion's `useScroll({ target: ref, offset: ["start 0.8", "end 0.4"] })` and per-word `useTransform` on opacity/color.
-
-Apply it to:
-- the long About paragraph
-- the Vision section's statement
-
-### 5. Files touched
-
-- `src/components/HeroSection.tsx` — new headline + scroll-rotating photo
-- `src/components/ScrollHighlightText.tsx` — new reusable component
-- `src/components/AboutSection.tsx` — wrap paragraph in ScrollHighlightText
-- `src/components/VisionSection.tsx` — wrap statement in ScrollHighlightText
-- `src/pages/Index.tsx` — Lenis smooth-scroll setup
-- `package.json` — add `lenis`
-
-## Technical notes
-
-- Lenis duration ~1.2, easing `(t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))` for the classic smooth feel.
-- Photo transform uses `useSpring(scrollYProgress, { stiffness: 80, damping: 20 })` to avoid stutter.
-- ScrollHighlightText splits text on spaces; each word is its own `motion.span` with `useTransform` mapping a small slice of scroll progress to opacity 0.2 → 1.
-- No business logic / backend changes — pure frontend motion work.
+## Content stays yours
+All copy uses your existing details — 14-year-old founder, CEO of Void AI, AI tools + full-stack + SEO, Void AI Chatbot, Study AI, Instagram CTA — just re-organized into the reference's structure. Headline stays SOFTWARE ENGINEER.
 
 ## Out of scope
-- No changes to colors, fonts, layout structure, projects list, contact, or nav.
-- Not reproducing the reference site 1:1 — just matching the feel (smooth scroll, rotating photo follower, word-highlight).
+- No new fonts (keep Manrope + Inter + JetBrains Mono).
+- No backend changes.
+- No template/branded assets from the reference site are copied.

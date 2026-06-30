@@ -2,60 +2,101 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
-  { title: "Void AI Chatbot", year: "2025", tag: "AI · NLP", status: "Live" },
-  { title: "Flashcard Generator AI", year: "2025", tag: "AI · React", status: "Live" },
-  { title: "Study AI", year: "2025", tag: "AI · Full-Stack", status: "Live" },
-  { title: "Premium Landing Pages", year: "2024", tag: "Web · SEO", status: "Live" },
-  { title: "eCommerce Jersey Platform", year: "2025", tag: "PHP · MySQL", status: "In Progress" },
+  {
+    title: "Void AI Chatbot",
+    subtitle: "AI Assistant",
+    gradient: "linear-gradient(135deg, #0f0f10 0%, #1a1a2e 50%, #16213e 100%)",
+    accent: "linear-gradient(135deg, rgba(139,92,246,0.35), rgba(59,130,246,0.25))",
+  },
+  {
+    title: "Study AI",
+    subtitle: "Learning Platform",
+    gradient: "linear-gradient(135deg, #fef3c7 0%, #fde68a 60%, #fbbf24 100%)",
+    accent: "linear-gradient(135deg, rgba(251,191,36,0.4), rgba(245,158,11,0.3))",
+  },
+  {
+    title: "Flashcard Generator",
+    subtitle: "AI · React",
+    gradient: "linear-gradient(135deg, #fce7f3 0%, #f9a8d4 60%, #ec4899 100%)",
+    accent: "linear-gradient(135deg, rgba(236,72,153,0.4), rgba(244,114,182,0.3))",
+  },
+  {
+    title: "Jersey Commerce",
+    subtitle: "PHP · MySQL",
+    gradient: "linear-gradient(135deg, #dbeafe 0%, #93c5fd 60%, #3b82f6 100%)",
+    accent: "linear-gradient(135deg, rgba(59,130,246,0.4), rgba(37,99,235,0.3))",
+  },
 ];
 
 const ProjectsSection = () => (
   <section id="projects" className="py-32 px-6 border-t border-border">
-    <div className="max-w-6xl mx-auto">
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8"
-      >
-        / Selected Work
-      </motion.p>
+    <div className="max-w-7xl mx-auto">
+      <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
+        <div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6"
+          >
+            / Works
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display font-black text-5xl sm:text-7xl lg:text-8xl tracking-tighter leading-[0.95]"
+          >
+            Featured<br />Projects
+          </motion.h2>
+        </div>
+        <motion.a
+          href="#"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="group inline-flex items-center gap-3 font-display font-medium text-base"
+        >
+          View All Work
+          <span className="w-9 h-9 rounded-full bg-foreground text-background flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
+            <ArrowUpRight size={16} />
+          </span>
+        </motion.a>
+      </div>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="font-display font-black text-5xl sm:text-7xl lg:text-8xl tracking-tighter mb-16"
-      >
-        WORK.
-      </motion.h2>
-
-      <div>
+      <div className="grid md:grid-cols-2 gap-8">
         {projects.map((p, i) => (
           <motion.a
             key={p.title}
             href="#"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="group grid grid-cols-12 gap-4 items-center py-8 border-t border-border last:border-b cursor-pointer"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ delay: (i % 2) * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="group block"
           >
-            <span className="col-span-1 font-mono text-xs text-muted-foreground">0{i + 1}</span>
-            <h3 className="col-span-7 sm:col-span-6 font-display font-bold text-2xl sm:text-4xl lg:text-5xl group-hover:translate-x-2 transition-transform duration-500">
-              {p.title}
-            </h3>
-            <span className="hidden sm:block col-span-2 font-mono text-xs text-muted-foreground uppercase tracking-wider">
-              {p.tag}
-            </span>
-            <span className="col-span-2 sm:col-span-1 font-mono text-xs text-muted-foreground text-right sm:text-left">
-              {p.year}
-            </span>
-            <div className="col-span-2 flex justify-end">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
+            <div
+              className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 transition-transform duration-700 group-hover:-translate-y-2"
+              style={{ background: p.gradient }}
+            >
+              <div
+                className="absolute inset-0 opacity-80 mix-blend-overlay"
+                style={{ background: p.accent }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-display font-black text-6xl sm:text-7xl tracking-tighter text-background/90 mix-blend-difference">
+                  {p.title.split(" ")[0]}
+                </span>
+              </div>
+              <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/90 text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <ArrowUpRight size={18} />
               </div>
             </div>
+            <h3 className="font-display font-bold text-3xl sm:text-4xl tracking-tight">
+              {p.title}
+            </h3>
+            <p className="text-muted-foreground mt-1">{p.subtitle}</p>
           </motion.a>
         ))}
       </div>

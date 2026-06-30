@@ -4,10 +4,9 @@ import ScrollProgress from "@/components/ScrollProgress";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import SkillsSection from "@/components/SkillsSection";
-import ToolsSection from "@/components/ToolsSection";
+import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import VisionSection from "@/components/VisionSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -38,10 +37,9 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <AboutSection />
-      <SkillsSection />
-      <ToolsSection />
+      <ServicesSection />
       <ProjectsSection />
-      <VisionSection />
+      <TestimonialsSection />
       <ContactSection />
       <Footer />
     </div>
