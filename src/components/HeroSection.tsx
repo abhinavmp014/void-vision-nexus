@@ -16,9 +16,9 @@ const HeroSection = () => {
 
   const { scrollY } = useScroll();
   const smoothY = useSpring(scrollY, { stiffness: 80, damping: 20, mass: 0.5 });
-  const photoY = useTransform(smoothY, [0, 1200], [0, 500]);
-  const photoRotate = useTransform(smoothY, [0, 1200], [0, 35]);
-  const photoScale = useTransform(smoothY, [0, 1200], [1, 1.08]);
+  const photoY = useTransform(smoothY, [0, 900], [0, -80]);
+  const photoRotateY = useTransform(smoothY, [0, 900], [0, 360]);
+  const photoScale = useTransform(smoothY, [0, 900], [1, 4.2]);
 
   return (
     <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
