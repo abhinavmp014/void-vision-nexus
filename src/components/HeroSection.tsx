@@ -15,10 +15,10 @@ const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll();
-  const smoothY = useSpring(scrollY, { stiffness: 80, damping: 20, mass: 0.5 });
-  const photoY = useTransform(smoothY, [0, 900], [0, -80]);
-  const photoRotateY = useTransform(smoothY, [0, 900], [0, 360]);
-  const photoScale = useTransform(smoothY, [0, 900], [1, 4.2]);
+  const smoothY = useSpring(scrollY, { stiffness: 60, damping: 22, mass: 0.6 });
+  const photoY = useTransform(smoothY, [0, 900], [0, 700]);
+  const photoRotate = useTransform(smoothY, [0, 900], [0, 45]);
+  const photoScale = useTransform(smoothY, [0, 900], [1, 3.2]);
 
   return (
     <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
@@ -73,10 +73,9 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="mt-12 sm:mt-16 relative z-20"
-        style={{ perspective: 1200 }}
       >
         <motion.div
-          style={{ y: photoY, rotateY: photoRotateY, scale: photoScale, transformStyle: "preserve-3d" }}
+          style={{ y: photoY, rotate: photoRotate, scale: photoScale }}
           className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-foreground/10 will-change-transform"
         >
           <img
