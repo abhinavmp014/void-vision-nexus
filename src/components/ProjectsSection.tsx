@@ -1,28 +1,32 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import voidAiImg from "@/assets/void-ai-chatbot.jpg";
 
 const projects = [
   {
     title: "Void AI Chatbot",
     subtitle: "AI Assistant",
-    gradient: "linear-gradient(135deg, #0f0f10 0%, #1a1a2e 50%, #16213e 100%)",
-    accent: "linear-gradient(135deg, rgba(139,92,246,0.35), rgba(59,130,246,0.25))",
+    href: "https://void-ai-chat-app.vercel.app/",
+    image: voidAiImg,
   },
   {
     title: "Study AI",
     subtitle: "Learning Platform",
+    href: "#",
     gradient: "linear-gradient(135deg, #fef3c7 0%, #fde68a 60%, #fbbf24 100%)",
     accent: "linear-gradient(135deg, rgba(251,191,36,0.4), rgba(245,158,11,0.3))",
   },
   {
     title: "Flashcard Generator",
     subtitle: "AI · React",
+    href: "#",
     gradient: "linear-gradient(135deg, #fce7f3 0%, #f9a8d4 60%, #ec4899 100%)",
     accent: "linear-gradient(135deg, rgba(236,72,153,0.4), rgba(244,114,182,0.3))",
   },
   {
     title: "Jersey Commerce",
     subtitle: "PHP · MySQL",
+    href: "#",
     gradient: "linear-gradient(135deg, #dbeafe 0%, #93c5fd 60%, #3b82f6 100%)",
     accent: "linear-gradient(135deg, rgba(59,130,246,0.4), rgba(37,99,235,0.3))",
   },
@@ -69,7 +73,9 @@ const ProjectsSection = () => (
         {projects.map((p, i) => (
           <motion.a
             key={p.title}
-            href="#"
+            href={p.href}
+            target={p.href.startsWith("http") ? "_blank" : undefined}
+            rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -78,17 +84,30 @@ const ProjectsSection = () => (
           >
             <div
               className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 transition-transform duration-700 group-hover:-translate-y-2"
-              style={{ background: p.gradient }}
+              style={p.image ? undefined : { background: p.gradient }}
             >
-              <div
-                className="absolute inset-0 opacity-80 mix-blend-overlay"
-                style={{ background: p.accent }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display font-black text-6xl sm:text-7xl tracking-tighter text-background/90 mix-blend-difference">
-                  {p.title.split(" ")[0]}
-                </span>
-              </div>
+              {p.image ? (
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  width={1280}
+                  height={960}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <>
+                  <div
+                    className="absolute inset-0 opacity-80 mix-blend-overlay"
+                    style={{ background: p.accent }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-display font-black text-6xl sm:text-7xl tracking-tighter text-background/90 mix-blend-difference">
+                      {p.title.split(" ")[0]}
+                    </span>
+                  </div>
+                </>
+              )}
               <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/90 text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <ArrowUpRight size={18} />
               </div>
