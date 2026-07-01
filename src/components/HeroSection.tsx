@@ -73,9 +73,10 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="mt-12 sm:mt-16 relative z-20"
+        style={{ perspective: 1200 }}
       >
         <motion.div
-          style={{ y: photoY, rotate: photoRotate, scale: photoScale }}
+          style={{ y: photoY, rotateY: photoRotateY, scale: photoScale, transformStyle: "preserve-3d" }}
           className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-foreground/10 will-change-transform"
         >
           <img
