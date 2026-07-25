@@ -1,35 +1,15 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import voidAiImg from "@/assets/void-ai-chatbot.jpg";
+import studyAiImg from "@/assets/study-ai.jpg";
+import flashcardImg from "@/assets/flashcard-generator.jpg";
+import jerseyImg from "@/assets/jersey-commerce.jpg";
 
 const projects = [
-  {
-    title: "Void AI Chatbot",
-    subtitle: "AI Assistant",
-    href: "https://void-ai-chat-app.vercel.app/",
-    image: voidAiImg,
-  },
-  {
-    title: "Study AI",
-    subtitle: "Learning Platform",
-    href: "#",
-    gradient: "linear-gradient(135deg, #fef3c7 0%, #fde68a 60%, #fbbf24 100%)",
-    accent: "linear-gradient(135deg, rgba(251,191,36,0.4), rgba(245,158,11,0.3))",
-  },
-  {
-    title: "Flashcard Generator",
-    subtitle: "AI · React",
-    href: "#",
-    gradient: "linear-gradient(135deg, #fce7f3 0%, #f9a8d4 60%, #ec4899 100%)",
-    accent: "linear-gradient(135deg, rgba(236,72,153,0.4), rgba(244,114,182,0.3))",
-  },
-  {
-    title: "Jersey Commerce",
-    subtitle: "PHP · MySQL",
-    href: "#",
-    gradient: "linear-gradient(135deg, #dbeafe 0%, #93c5fd 60%, #3b82f6 100%)",
-    accent: "linear-gradient(135deg, rgba(59,130,246,0.4), rgba(37,99,235,0.3))",
-  },
+  { title: "Void AI Chatbot", subtitle: "AI Assistant", href: "https://void-ai-chat-app.vercel.app/", image: voidAiImg },
+  { title: "Study AI", subtitle: "Learning Platform", href: "#", image: studyAiImg },
+  { title: "Flashcard Generator", subtitle: "AI · React", href: "#", image: flashcardImg },
+  { title: "Jersey Commerce", subtitle: "PHP · MySQL", href: "#", image: jerseyImg },
 ];
 
 const ProjectsSection = () => (
