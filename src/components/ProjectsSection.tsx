@@ -62,32 +62,15 @@ const ProjectsSection = () => (
             transition={{ delay: (i % 2) * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="group block"
           >
-            <div
-              className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 transition-transform duration-700 group-hover:-translate-y-2"
-              style={p.image ? undefined : { background: p.gradient }}
-            >
-              {p.image ? (
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  loading="lazy"
-                  width={1280}
-                  height={960}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              ) : (
-                <>
-                  <div
-                    className="absolute inset-0 opacity-80 mix-blend-overlay"
-                    style={{ background: p.accent }}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display font-black text-6xl sm:text-7xl tracking-tighter text-background/90 mix-blend-difference">
-                      {p.title.split(" ")[0]}
-                    </span>
-                  </div>
-                </>
-              )}
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-muted transition-transform duration-700 group-hover:-translate-y-2">
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                width={1280}
+                height={960}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
               <div className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/90 text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <ArrowUpRight size={18} />
               </div>
