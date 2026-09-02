@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
+        sans: ["Kanit", "sans-serif"],
+        display: ["Kanit", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
@@ -57,6 +57,8 @@ export default {
         "neon-pink": "hsl(var(--neon-pink))",
         glass: "hsl(var(--glass-bg))",
         "glass-border": "hsl(var(--glass-border))",
+        "surface-light": "hsl(var(--surface-light))",
+        ink: "hsl(var(--ink))",
       },
       borderRadius: {
         lg: "var(--radius)",

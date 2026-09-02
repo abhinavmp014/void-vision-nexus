@@ -1,88 +1,48 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import HeroOrbit from "./HeroOrbit";
+import { ArrowDownRight } from "lucide-react";
+import abhinavPhoto from "@/assets/abhinav-photo.jpeg";
+import ContactButton from "./ContactButton";
 
-const word = {
-  hidden: { y: "110%" },
-  show: (i: number) => ({
-    y: "0%",
-    transition: { delay: 0.1 + i * 0.08, duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
+const HeroSection = () => (
+  <section className="relative flex min-h-screen flex-col overflow-x-clip px-6 pb-7 pt-6 sm:pb-8 sm:pt-8 md:px-10 md:pb-10">
+    <div className="flex items-center justify-between gap-5">
+      <motion.a href="#" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="font-display text-base font-bold uppercase tracking-[0.18em] text-foreground sm:text-xl">
+        Abhinav.mp
+      </motion.a>
+      <motion.nav initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }} className="hidden items-center justify-between gap-8 text-sm font-medium uppercase tracking-[0.16em] text-foreground/85 md:flex md:text-lg lg:text-[1.1rem]">
+        <a href="#about" className="transition-opacity duration-200 hover:opacity-70">About</a>
+        <a href="#services" className="transition-opacity duration-200 hover:opacity-70">Services</a>
+        <a href="#projects" className="transition-opacity duration-200 hover:opacity-70">Projects</a>
+        <a href="#contact" className="transition-opacity duration-200 hover:opacity-70">Contact</a>
+      </motion.nav>
+      <motion.a href="#contact" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.7 }} className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/70 transition-opacity hover:opacity-60 sm:text-xs">
+        Available / 2026
+      </motion.a>
+    </div>
 
-const HeroSection = () => {
-  const lines = [["SOFTWARE"], ["ENGINEER"]];
-  const ref = useRef<HTMLDivElement>(null);
+    <div className="relative z-20 mt-10 overflow-hidden sm:mt-5 md:-mt-5">
+      <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }} className="hero-heading w-full whitespace-nowrap text-center text-[17vw] font-black uppercase leading-none tracking-tight sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]">
+        Hi, I&apos;m Abhinav
+      </motion.h1>
+    </div>
 
-  return (
-    <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
-      {/* Decorative star */}
-      <motion.div
-        initial={{ opacity: 0, rotate: -180, scale: 0 }}
-        animate={{ opacity: 1, rotate: 0, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-[6%] top-[18%] hidden md:block"
-      >
-        <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
-          <path d="M32 0 L36 28 L64 32 L36 36 L32 64 L28 36 L0 32 L28 28 Z" fill="hsl(var(--foreground))" />
-        </svg>
-      </motion.div>
-
-      {/* Decorative bolt */}
-      <motion.div
-        initial={{ opacity: 0, rotate: 45, scale: 0 }}
-        animate={{ opacity: 1, rotate: 12, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-[8%] top-[22%] hidden md:block"
-      >
-        <svg width="48" height="64" viewBox="0 0 56 72" fill="none">
-          <path d="M34 0 L0 40 L22 40 L20 72 L56 28 L32 28 Z" fill="hsl(var(--foreground))" />
-        </svg>
-      </motion.div>
-
-      {/* Main headline */}
-      <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
-        {lines.map((line, li) => (
-          <div key={li} className="flex gap-3 sm:gap-6 overflow-hidden">
-            {line.map((w, wi) => (
-              <div key={wi} className="overflow-hidden">
-                <motion.h1
-                  custom={li * 2 + wi}
-                  variants={word}
-                  initial="hidden"
-                  animate="show"
-                  className="font-display font-black text-[16vw] sm:text-[13vw] lg:text-[10rem] leading-[0.95] tracking-tighter text-foreground"
-                >
-                  {w}
-                </motion.h1>
-              </div>
-            ))}
-          </div>
-        ))}
+    <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.9 }} className="absolute left-1/2 top-[51%] z-10 w-[215px] -translate-x-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:w-[300px] sm:translate-y-0 md:w-[390px] lg:w-[490px]">
+      <div className="profile-glow absolute inset-[8%] rounded-full" />
+      <div className="relative overflow-hidden rounded-full border border-foreground/30 bg-card shadow-portrait">
+        <img src={abhinavPhoto} alt="Abhinav MP, 14-year-old technology founder" className="aspect-square w-full object-cover grayscale-[0.12]" />
       </div>
+    </motion.div>
 
-      {/* Orbiting portfolio cards around center profile photo */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-8 sm:mt-12 relative z-20 w-full"
-      >
-        <HeroOrbit />
+    <div className="mt-auto flex items-end justify-between gap-6 pt-8">
+      <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.7 }} className="max-w-[165px] text-xs font-light uppercase leading-snug tracking-[0.1em] text-foreground/80 sm:max-w-[230px] sm:text-sm md:max-w-[275px] md:text-base">
+        A 14-year-old technology founder crafting AI tools, full-stack systems, and digital experiences with real product taste.
+      </motion.p>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.7 }} className="flex flex-col items-end gap-5">
+        <ContactButton />
+        <span className="hidden items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/50 sm:flex"><ArrowDownRight size={15} /> Scroll to explore</span>
       </motion.div>
-
-      {/* Footer line */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute bottom-8 left-0 right-0 flex justify-between items-end px-6 sm:px-10 text-xs sm:text-sm font-mono text-foreground"
-      >
-        <span className="font-display font-black text-xl">©{new Date().getFullYear()}</span>
-        <span className="tracking-wider">/CREATING SINCE 2023</span>
-      </motion.div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default HeroSection;

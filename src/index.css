@@ -1,40 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 40 25% 95%;
-    --foreground: 0 0% 8%;
+    --background: 0 0% 5%;
+    --foreground: 201 25% 90%;
 
-    --card: 40 25% 97%;
-    --card-foreground: 0 0% 8%;
+    --card: 0 0% 8%;
+    --card-foreground: 201 25% 90%;
 
-    --popover: 40 25% 97%;
-    --popover-foreground: 0 0% 8%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 201 25% 90%;
 
-    --primary: 0 0% 8%;
-    --primary-foreground: 40 25% 95%;
+    --primary: 292 100% 36%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 15% 88%;
-    --secondary-foreground: 0 0% 8%;
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 201 25% 90%;
 
-    --muted: 40 15% 90%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 201 15% 62%;
 
-    --accent: 40 15% 88%;
-    --accent-foreground: 0 0% 8%;
+    --accent: 292 100% 36%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 40 25% 95%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 0 0% 8%;
+    --border: 201 25% 90% / 0.18;
+    --input: 201 25% 90% / 0.25;
+    --ring: 292 100% 50%;
 
-    --radius: 0.75rem;
+    --surface-light: 0 0% 100%;
+    --ink: 0 0% 5%;
+
+    --radius: 0.5rem;
   }
 }
 
@@ -44,12 +45,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Kanit', sans-serif;
     overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Manrope', sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 0;
   }
   code, .font-mono {
     font-family: 'JetBrains Mono', monospace;
@@ -58,11 +59,36 @@
 
 @layer utilities {
   .font-display {
-    font-family: 'Manrope', sans-serif;
-    letter-spacing: -0.03em;
+    font-family: 'Kanit', sans-serif;
+    letter-spacing: 0;
   }
   .grain {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .hero-heading {
+    background: linear-gradient(180deg, hsl(216 8% 43%) 0%, hsl(201 25% 78%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .contact-gradient {
+    background: linear-gradient(123deg, hsl(292 100% 6%) 7%, hsl(303 100% 36%) 37%, hsl(276 68% 41%) 72%, hsl(24 100% 37%) 100%);
+  }
+
+  .shadow-contact {
+    box-shadow: 0 4px 4px hsl(303 100% 36% / 0.25), 4px 4px 12px hsl(276 68% 41% / 0.8) inset;
+  }
+
+  .profile-glow {
+    background: radial-gradient(circle, hsl(292 100% 55% / 0.35) 0%, transparent 68%);
+    filter: blur(28px);
+    transform: scale(1.24);
+  }
+
+  .shadow-portrait {
+    box-shadow: 0 30px 80px -20px hsl(292 100% 50% / 0.38), 0 0 0 8px hsl(var(--background)), 0 0 45px hsl(201 25% 90% / 0.12);
   }
 }
 
@@ -71,17 +97,17 @@ html {
 }
 
 ::selection {
-  background: hsl(0 0% 8%);
-  color: hsl(40 25% 95%);
+  background: hsl(292 100% 36%);
+  color: hsl(0 0% 100%);
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(40 25% 95%);
+  background: hsl(var(--background));
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(0 0% 8% / 0.3);
+  background: hsl(var(--foreground) / 0.3);
   border-radius: 3px;
 }

@@ -1,0 +1,4 @@
+- [ ] Rebuild the landing page around Abhinav's existing content
+- [ ] Replace the 3D head/orbit hero with the uploaded profile photo
+- [ ] Implement the requested dark creator layout and motion
+- [ ] Validate build and preview diagnostics
